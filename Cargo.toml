@@ -1,0 +1,12 @@
+[package]
+name = "Rust_Training"
+version = "0.1.0"
+edition = "2021"
+#![allow(non_snake_case)]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[[bin]]
+name = "Rust_Training"
+path = "main.rs"
