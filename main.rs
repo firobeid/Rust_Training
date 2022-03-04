@@ -1,5 +1,9 @@
-use std::io;
+#[allow(unused_variables)]
+#[allow(unused_assignments)]
+#[allow(unused_variables)]
 
+use std::io;
+mod modules;
 
 fn main() {
     //! DOCS
@@ -24,6 +28,8 @@ fn main() {
             println!("We have an {}", e);
         }
     }
+    modules::play_movie("ET");
+    modules::play_audio("ET");
 }
 
 // cargo init if folder already created | cargo new otherwise
@@ -31,9 +37,7 @@ fn main() {
 // RUN CARGO BUILD
 // cargo doc
 
-#[allow(unused_variables)]
-#[allow(unused_assignments)]
-#[allow(unused_variables)]
+
 // fn main() {
 //     let somevalue:i32 = 123;
 //     println!("Hello, world ! {}", somevalue);
