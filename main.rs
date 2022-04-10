@@ -1,4 +1,4 @@
-#[allow(unused_variables)]
+#[warn(non_snake_case)]
 #[allow(unused_assignments)]
 #[allow(unused_variables)]
 #[allow(dead_code)]
@@ -8,6 +8,8 @@ use crate::Suit::{Spade, Heart};
 mod modules;
 mod archive;
 mod sqrt;
+mod functions;
+static mut NUM: f32 = 0.0;
 
 fn main() {
     //! DOCS
@@ -22,9 +24,45 @@ fn main() {
     // ructc filename.rc  
     // RUN CARGO BUILD
     // cargo doc
+
+    // Global declaration Usage
+    unsafe {
+        NUM = 42.0;
+        let _ans = sqrt::sqrt(NUM);
+        println!("{}", _ans);
+        let _ans2 = sqrt::sqrt_v2(NUM);
+        println!("{}", _ans2);
+    };
+    // Closures(i.e lambda)
+    let c = |a: i32, b: i32| println!("{}",a+b);
+    let gen = |x: i32| println!("{}",x);
+    let gen2 = |x: i32,y: i32| -> i32 { x+y };
+    let value = |value: i32| -> i32{
+        let c = value + 1;
+        c
+    };
+    println!("{}",value(4));
+    gen2(2,3);
+    functions::sum_even_sq(500);
+    let sum = functions::hof_sum_even_sq(500);
+    println!("{}",sum);
+
+    //traits
+    let r = RustDev::new(true);
+    let j = JavaDev::new(true);
+    println!("{}", r.language());
+    r.say_hello();
+    println!("{}", j.language());
+    j.say_hello();
+    println!("The animal says: {}",get_animal(1.0).make_noise());
+
+    //generics: limts types of parameters you can pass to a function
+    // let dog = Dog { species: "retrieve" };
+    // bark_it(dog);
+
+  
     
-    let _ans = sqrt::sqrt(&42.0);
-    println!("{}", _ans);
+
     
     // println!("{}", );
     // println!("Hello, World!");
@@ -182,6 +220,97 @@ mod generator{
     }
 
 }
+// Traits: abstract classes
+struct RustDev{
+    awesome: bool
+}
+struct JavaDev{
+    awesome: bool
+}
+trait Dev{
+    fn new(awesome: bool) -> Self;
+    fn language(&self) -> &str;
+    fn say_hello(&self) {println!("Hello World!")}
+}
+impl Dev for RustDev{
+    fn new(awesome: bool) -> Self {
+        RustDev{ awesome:awesome}
+    }
+    fn language(&self) -> &str{
+        "Rust"
+    }
+    fn say_hello(&self) {
+        println!("\"Hello World!\";");
+    }
+}
+
+impl Dev for JavaDev{
+    fn new(awesome: bool) -> Self {
+        JavaDev{ awesome:awesome}
+    }
+    fn language(&self) -> &str{
+        "Java"
+    }
+    fn say_hello(&self) {
+        println!("System.out.println(\"Hello World!\");");
+    }
+}
+// Another Trait: Return traits using box with dyn trait (return type of structure then struct itself)
+struct Dog {
+}
+struct Cat {
+}
+
+trait Animal {
+    fn make_noise(&self) -> &'static str;
+}
+impl Animal for Dog {
+    fn make_noise(&self) -> &'static str {
+        "woof"
+    }
+}
+impl Animal for Cat {
+    fn make_noise(&self) -> &'static str {
+        "meow"
+    }
+}
+fn get_animal(rand_number: f64) -> Box<dyn Animal> {
+    if rand_number < 1.0 {
+        Box::new(Dog {})
+    } else{
+        Box::new(Cat {})
+    }
+}
+
+
+
+// Generics
+
+// trait Bark{
+//     fn bark(&self) -> String;
+// }
+
+// struct Dog {
+//     species: &'static str
+// }
+// struct Cat {
+//     color: &'static str
+// }
+
+// impl Bark for Dog {
+//     fn bark(&self) -> String{
+//         return format!("{}", self.species)
+//     }
+// }
+// fn bark_it<T: Bark>(b: T){
+//     println!("{} barking", b.bark())
+// }
+
+
+
+
+
+
 
 
 
