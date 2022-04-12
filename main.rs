@@ -60,6 +60,10 @@ fn main() {
     // let dog = Dog { species: "retrieve" };
     // bark_it(dog);
 
+    // Dynamic Dispatch @ Runtime
+    duplicate(&42);
+    duplicate(&"Hirus    John ".to_string());
+
   
     
 
@@ -306,8 +310,23 @@ fn get_animal(rand_number: f64) -> Box<dyn Animal> {
 //     println!("{} barking", b.bark())
 // }
 
+// Dynamic Dispatch
+trait Duplicatable{
+    fn dupl(&self) -> String;
+}
 
-
+impl Duplicatable for String{
+    fn dupl(&self) -> String{
+        format!("{0}{0}", *self)
+    }
+}
+impl Duplicatable for i32{
+    fn dupl(&self) -> String{
+        format!("{0}{0}", *self)
+    }
+}fn duplicate(x: &dyn Duplicatable){
+    println!{"{}", x.dupl()};
+}
 
 
 

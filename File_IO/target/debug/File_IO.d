@@ -1,0 +1,1 @@
+C:\Users\feras.FIROMEGAPC\Desktop\AlgoTrading\ Resources\COURSES\RUST\ Programming\ Lamguage\Rust_Training\File_IO\target\debug\File_IO.exe: C:\Users\feras.FIROMEGAPC\Desktop\AlgoTrading\ Resources\COURSES\RUST\ Programming\ Lamguage\Rust_Training\File_IO\src\main.rs
