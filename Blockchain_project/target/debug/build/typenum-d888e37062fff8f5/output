@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=C:\Users\feras.FIROMEGAPC\Desktop\AlgoTrading Resources\COURSES\RUST Programming Lamguage\Rust_Training\Blockchain_project\target\debug\build\typenum-d888e37062fff8f5\out\consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=C:\Users\feras.FIROMEGAPC\Desktop\AlgoTrading Resources\COURSES\RUST Programming Lamguage\Rust_Training\Blockchain_project\target\debug\build\typenum-d888e37062fff8f5\out\op.rs
